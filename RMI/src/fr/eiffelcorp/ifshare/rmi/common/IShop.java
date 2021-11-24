@@ -4,6 +4,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface IShop extends Remote {
-	public void sell() throws RemoteException;
-	public void buy() throws RemoteException;
+	public int sellToClient(String product_name, Double product_price) throws RemoteException;
+	public int buyFromClient(IProduct product) throws RemoteException;
 }
