@@ -11,6 +11,7 @@ import fr.eiffelcorp.ifshare.rmi.common.IProduct;
 @SuppressWarnings("serial")
 public class Observator extends UnicastRemoteObject implements IObservator {
     private List<String> products = new ArrayList<>();
+    private final Object lock = new Object();
 
     public Observator() throws RemoteException {
         super();
@@ -21,7 +22,9 @@ public class Observator extends UnicastRemoteObject implements IObservator {
     	for (var elem : products) {
     		if (elem.equals(product.getName())) {
         		System.out.println("The following product is available : " + product.getInfo());
-        		this.products.remove(elem);
+        		synchronized (lock) {
+        			this.products.remove(elem);
+        		}
         	}
     	}
     }
@@ -33,7 +36,9 @@ public class Observator extends UnicastRemoteObject implements IObservator {
 				return ;
 			}
 		}
-		products.add(product);
+		synchronized(lock) {
+			products.add(product);
+		}
 	}
 
     @Override

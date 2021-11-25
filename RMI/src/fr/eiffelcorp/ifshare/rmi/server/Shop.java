@@ -15,7 +15,8 @@ import fr.eiffelcorp.ifshare.rmi.common.IShop;
 @SuppressWarnings("serial")
 public class Shop extends UnicastRemoteObject implements IShop {
 	private Map<Integer, List<IProduct>> products = new HashMap<>();
-	private Map<Integer, IObservator> observators = new HashMap<>(); // A modifier en liste d'observateurs
+	private Map<Integer, IObservator> observators = new HashMap<>();
+	private final Object lock = new Object();
 
 	protected Shop() throws RemoteException {
 		super();
@@ -29,7 +30,9 @@ public class Shop extends UnicastRemoteObject implements IShop {
 			token = (token / 2) + count;
 			count += 1;
 		}
-		products.put(token, new ArrayList<IProduct>());
+		synchronized (lock) {
+			products.put(token, new ArrayList<IProduct>());
+		}
 		addObservator(token, observator);
 		return token;
 	}
@@ -47,17 +50,23 @@ public class Shop extends UnicastRemoteObject implements IShop {
 	public int sellToClient(Integer token, String product_name) throws RemoteException {
 		IProduct product = searchForProduct(token, product_name);
 		if (product != null) {
-			observators.get(token).setProduct("");
-			products.get(token).remove(product);
+			synchronized (lock) {
+				observators.get(token).setProduct("");
+				products.get(token).remove(product);
+			}
 			return 0;
 		}
-		observators.get(token).setProduct(product_name);
+		synchronized (lock) {
+			observators.get(token).setProduct(product_name);
+		}
 		return 1;
 	}
 
 	@Override
 	public int buyFromClient(Integer token, IProduct product) throws RemoteException {
-		products.get(token).add(product);
+		synchronized (lock) {
+			products.get(token).add(product);
+		}
 		notifyAllObservators(product);
 		return 0;
 	}
@@ -83,20 +92,26 @@ public class Shop extends UnicastRemoteObject implements IShop {
 	}
 	
 	public void addObservator(Integer token, IObservator observator) throws RemoteException {
-		this.observators.put(token, observator);
+		synchronized (lock) {
+			this.observators.put(token, observator);
+		}
 	}
 	
 
     @Override
     public void notifyAllObservators(IProduct product) throws RemoteException {
         for (var observator : observators.values()) {
-            observator.update(product);
+        	synchronized (lock) {
+        		 observator.update(product);
+        	}
         }
     }
 
     @Override
     public void removeAllObservators() throws RemoteException {
-        observators.clear();
+    	synchronized (lock) {
+    		observators.clear();
+    	}
     }
 
 }

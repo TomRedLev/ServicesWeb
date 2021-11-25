@@ -27,6 +27,7 @@ public class Product extends UnicastRemoteObject implements IProduct {
 		super();
 		this.name = name;
 		this.type = type;
+		this.seller = seller;
 		this.price = price;
 		this.comment = comment;
 	}
