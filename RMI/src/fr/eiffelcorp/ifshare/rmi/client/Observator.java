@@ -18,16 +18,17 @@ public class Observator extends UnicastRemoteObject implements IObservator {
     }
 
     @Override
-    public void update(IProduct product) throws RemoteException {
+    public int update(IProduct product) throws RemoteException {
     	for (var elem : products) {
     		if (elem.equals(product.getName())) {
         		System.out.println("The following product is available : " + product.getInfo());
         		synchronized (lock) {
         			this.products.remove(elem);
         		}
-        		break;
+        		return 0;
         	}
     	}
+    	return 1;
     }
     
     @Override

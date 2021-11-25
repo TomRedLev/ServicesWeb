@@ -4,7 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface IObservator extends Remote {
-    public void update(IProduct product) throws RemoteException;
+    public int update(IProduct product) throws RemoteException;
     public String getInfo() throws RemoteException;
     public void setProduct(String product) throws RemoteException;
 }

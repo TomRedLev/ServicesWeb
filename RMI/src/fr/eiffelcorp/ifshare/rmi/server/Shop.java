@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 import fr.eiffelcorp.ifshare.rmi.common.IObservator;
@@ -16,6 +18,7 @@ import fr.eiffelcorp.ifshare.rmi.common.IShop;
 public class Shop extends UnicastRemoteObject implements IShop {
 	private Map<Integer, List<IProduct>> products = new HashMap<>();
 	private Map<Integer, IObservator> observators = new HashMap<>();
+	private List<IObservator> order_observators = new ArrayList<>();
 	private final Object lock = new Object();
 
 	protected Shop() throws RemoteException {
@@ -53,11 +56,13 @@ public class Shop extends UnicastRemoteObject implements IShop {
 			synchronized (lock) {
 				observators.get(token).setProduct("");
 				products.get(token).remove(product);
+				order_observators.remove(observators.get(token));
 			}
 			return 0;
 		}
 		synchronized (lock) {
 			observators.get(token).setProduct(product_name);
+			order_observators.add(observators.get(token));
 		}
 		return 1;
 	}
@@ -100,9 +105,17 @@ public class Shop extends UnicastRemoteObject implements IShop {
 
     @Override
     public void notifyAllObservators(IProduct product) throws RemoteException {
-        for (var observator : observators.values()) {
+        for (var observator : order_observators) {
         	synchronized (lock) {
-        		 observator.update(product);
+        		 if (observator.update(product) == 0) {
+        			 for (Entry<Integer, IObservator> entry : observators.entrySet()) {
+        			        if (Objects.equals(observator, entry.getValue())) {
+        			            sellToClient(entry.getKey(), product.getName());
+        			            break;
+        			        }
+        			 }
+        			 break;
+        		 }
         	}
         }
     }
