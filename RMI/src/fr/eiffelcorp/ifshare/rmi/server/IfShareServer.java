@@ -16,6 +16,13 @@ import fr.eiffelcorp.ifshare.rmi.common.IShop;
 	// déjà connectée.
 	// Permettra de ne demander que le token de la personne et de vérifier si le nom est bien commun.
 	// Si on fait ça, plus besoin du token dans les products.
+	//
+	// On pourrait aussi faire un token comme clé d'une HashMap<Token, List<IProduct>>,
+	// Pour delete token + nom de l'objet
+	// Pour ajouter token + objet
+
+// Ajouts nécessaires : 
+	// Ajouter l'observator/observer.
 	
 
 public class IfShareServer {

@@ -81,4 +81,12 @@ public class Product extends UnicastRemoteObject implements IProduct {
 		this.comment = comment;
 	}
 	
+	@Override
+	public String getInfo() throws RemoteException {
+		return "Product { name : " + name 
+		+ ", type : " + type
+		+ ", seller : " + seller
+		+ ", price : " + price
+		+ ", comment : " + comment + "}";
+	}
 }

@@ -14,4 +14,5 @@ public interface IProduct extends Remote {
 	public void setSeller(String seller) throws RemoteException;
 	public void setPrice(Double price) throws RemoteException;
 	public void setComment(String comment) throws RemoteException; 
+	public String getInfo() throws RemoteException;
 }
