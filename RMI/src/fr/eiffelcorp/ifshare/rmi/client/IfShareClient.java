@@ -33,9 +33,9 @@ public class IfShareClient {
 			System.out.println(s.storeProducts());
 			System.out.println(s.buyFromClient(client1_token, product2));
 			System.out.println(s.storeProducts());
-			System.out.println(s.sellToClient(client1_token, "Alice aux pays des merveilles"));
-			System.out.println(s.storeProducts());
 			System.out.println(s.buyFromClient(client1_token, product3));
+			System.out.println(s.storeProducts());
+			System.out.println(s.sellToClient(client1_token, "Alice aux pays des merveilles"));
 			System.out.println(s.storeProducts());
 			
 		} catch (Exception e) {

@@ -25,6 +25,7 @@ public class Observator extends UnicastRemoteObject implements IObservator {
         		synchronized (lock) {
         			this.products.remove(elem);
         		}
+        		break;
         	}
     	}
     }
