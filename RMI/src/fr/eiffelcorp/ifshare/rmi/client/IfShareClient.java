@@ -7,7 +7,12 @@ import fr.eiffelcorp.ifshare.rmi.common.IObservator;
 import fr.eiffelcorp.ifshare.rmi.common.IProduct;
 import fr.eiffelcorp.ifshare.rmi.common.IShop;
 
-// Need to do some concurrence gestion on objects.
+// Reflechir sur le fait de savoir si product est sensé être coté client ou serveur.
+// Juste a déplacer le fichier et à créer des IProducts et call les bonnes méthodes si on veut le passer.
+// de l'autre côté.
+
+// Principe établi ici : Le client possède les produits et les observateurs et le shop n'est qu'une plateforme de transfert.
+
 
 @SuppressWarnings("deprecation")
 public class IfShareClient {
