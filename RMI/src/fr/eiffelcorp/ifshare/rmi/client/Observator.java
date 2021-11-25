@@ -25,6 +25,7 @@ public class Observator extends UnicastRemoteObject implements IObservator {
         		synchronized (lock) {
         			this.products.remove(elem);
         		}
+        		System.out.println("Automatic buy of this product."); //Choice, seems like the closest to the assignment.
         		return 0;
         	}
     	}
