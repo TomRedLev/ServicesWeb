@@ -19,8 +19,8 @@ public class IfShareClient {
 	public static void main(String[] args)  {
 		try {
 			// Chemin a changer
-			String secpath = "/home/padawan/ServicesWebProject/RMI/src/fr/eiffelcorp/ifshare/rmi/client/sec.policy";
-			System.setProperty("java.security.policy", secpath);
+			String secpath = "RMI/fr.eiffelcorp.ifshare.rmi.client/.settings/";
+			System.setProperty("java.security.policy", secpath + "sec.policy");
 			System.setSecurityManager(new RMISecurityManager());
 			IShop s = (IShop) Naming.lookup("rmi://localhost:8081/ShopService");
 			
