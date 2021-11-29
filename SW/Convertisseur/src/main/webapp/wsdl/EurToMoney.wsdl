@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://eurToMoney" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://eurToMoney" xmlns:intf="http://eurToMoney" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://eurToMoney" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="convertToUsd">
+    <complexType>
+     <sequence>
+      <element name="montant" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="convertToUsdResponse">
+    <complexType>
+     <sequence>
+      <element name="convertToUsdReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="convertToGpb">
+    <complexType>
+     <sequence>
+      <element name="montant" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="convertToGpbResponse">
+    <complexType>
+     <sequence>
+      <element name="convertToGpbReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="convertToJpy">
+    <complexType>
+     <sequence>
+      <element name="montant" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="convertToJpyResponse">
+    <complexType>
+     <sequence>
+      <element name="convertToJpyReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="convertToUsdRequest">
+
+      <wsdl:part element="impl:convertToUsd" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="convertToGpbResponse">
+
+      <wsdl:part element="impl:convertToGpbResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="convertToUsdResponse">
+
+      <wsdl:part element="impl:convertToUsdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="convertToJpyResponse">
+
+      <wsdl:part element="impl:convertToJpyResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="convertToGpbRequest">
+
+      <wsdl:part element="impl:convertToGpb" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="convertToJpyRequest">
+
+      <wsdl:part element="impl:convertToJpy" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="EurToMoney">
+
+      <wsdl:operation name="convertToUsd">
+
+         <wsdl:input message="impl:convertToUsdRequest" name="convertToUsdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:convertToUsdResponse" name="convertToUsdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="convertToGpb">
+
+         <wsdl:input message="impl:convertToGpbRequest" name="convertToGpbRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:convertToGpbResponse" name="convertToGpbResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="convertToJpy">
+
+         <wsdl:input message="impl:convertToJpyRequest" name="convertToJpyRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:convertToJpyResponse" name="convertToJpyResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="EurToMoneySoapBinding" type="impl:EurToMoney">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="convertToUsd">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="convertToUsdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="convertToUsdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="convertToGpb">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="convertToGpbRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="convertToGpbResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="convertToJpy">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="convertToJpyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="convertToJpyResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="EurToMoneyService">
+
+      <wsdl:port binding="impl:EurToMoneySoapBinding" name="EurToMoney">
+
+         <wsdlsoap:address location="http://localhost:8080/Convertisseur/services/EurToMoney"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

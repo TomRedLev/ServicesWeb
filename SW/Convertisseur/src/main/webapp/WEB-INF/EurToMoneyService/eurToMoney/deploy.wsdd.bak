@@ -1,0 +1,35 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EurToMoneyService WSDL service -->
+
+  <service name="EurToMoney" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://eurToMoney"/>
+      <parameter name="wsdlServiceElement" value="EurToMoneyService"/>
+      <parameter name="schemaQualified" value="http://eurToMoney"/>
+      <parameter name="wsdlServicePort" value="EurToMoney"/>
+      <parameter name="className" value="eurToMoney.EurToMoneySoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="EurToMoney"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="convertToUsd" qname="operNS:convertToUsd" xmlns:operNS="http://eurToMoney" returnQName="retNS:convertToUsdReturn" xmlns:retNS="http://eurToMoney" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:montant" xmlns:pns="http://eurToMoney" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="convertToGpb" qname="operNS:convertToGpb" xmlns:operNS="http://eurToMoney" returnQName="retNS:convertToGpbReturn" xmlns:retNS="http://eurToMoney" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:montant" xmlns:pns="http://eurToMoney" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="convertToJpy" qname="operNS:convertToJpy" xmlns:operNS="http://eurToMoney" returnQName="retNS:convertToJpyReturn" xmlns:retNS="http://eurToMoney" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:montant" xmlns:pns="http://eurToMoney" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="convertToUsd convertToGpb convertToJpy"/>
+
+  </service>
+</deployment>
