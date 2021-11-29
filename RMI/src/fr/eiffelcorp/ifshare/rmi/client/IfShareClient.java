@@ -18,7 +18,8 @@ import fr.eiffelcorp.ifshare.rmi.common.IShop;
 public class IfShareClient {
 	public static void main(String[] args)  {
 		try {
-			// Chemin a changer
+			// Chemin à changer si ne fonctionne pas pour Julien ou Gabriel
+			// Fonctionne sans pour Tom
 			String secpath = "RMI/fr.eiffelcorp.ifshare.rmi.client/";
 			System.setProperty("java.security.policy", secpath + "sec.policy");
 			System.setSecurityManager(new RMISecurityManager());
