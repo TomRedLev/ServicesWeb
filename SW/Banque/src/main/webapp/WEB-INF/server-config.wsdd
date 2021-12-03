@@ -29,15 +29,18 @@
   <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
  </ns1:service>
  <ns1:service name="Compte" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="depotDe" qname="ns1:depotDe" soapAction="" xmlns:ns1="http://compte" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
-   <ns2:parameter qname="ns1:montant" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns2:operation name="setCurrency" qname="ns1:setCurrency" soapAction="" xmlns:ns1="http://compte" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:currency" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns2:operation>
-  <ns1:operation name="retraitDe" qname="ns2:retraitDe" returnQName="ns2:retraitDeReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://compte" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns2:montant" type="xsd:int"/>
+  <ns1:operation name="depotDe" qname="ns2:depotDe" soapAction="" xmlns:ns2="http://compte">
+   <ns1:parameter qname="ns2:montant" type="xsd:double" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="valeurDuSolde" qname="ns3:valeurDuSolde" returnQName="ns3:valeurDuSoldeReturn" returnType="xsd:int" soapAction="" xmlns:ns3="http://compte" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  <ns1:parameter name="scope" value="session"/>
-  <ns1:parameter name="allowedMethods" value="depotDe valeurDuSolde retraitDe"/>
+  <ns1:operation name="retraitDe" qname="ns3:retraitDe" returnQName="ns3:retraitDeReturn" returnType="xsd:boolean" soapAction="" xmlns:ns3="http://compte" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:montant" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="valeurDuSolde" qname="ns4:valeurDuSolde" returnQName="ns4:valeurDuSoldeReturn" returnType="xsd:double" soapAction="" xmlns:ns4="http://compte" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="currencyType" qname="ns5:currencyType" returnQName="ns5:currencyTypeReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://compte" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:parameter name="allowedMethods" value="currencyType depotDe valeurDuSolde setCurrency retraitDe"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Compte"/>
   <ns1:parameter name="className" value="compte.Compte"/>
@@ -45,6 +48,7 @@
   <ns1:parameter name="schemaQualified" value="http://compte"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://compte"/>
   <ns1:parameter name="wsdlServiceElement" value="CompteService"/>
+  <ns1:parameter name="scope" value="session"/>
  </ns1:service>
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>

@@ -29,4 +29,11 @@ public class EurToMoney {
 		
 		return montant * (double) currencySystem.rate("", "EUR", "USD", false, "", CurncsrvReturnRate.curncsrvReturnRateNumber, "", "");
 	}
+	
+	public double convertToEur(double montant, String currency) throws ServiceException, RemoteException {
+			
+			CurrencyServerSoap currencySystem = new CurrencyServerLocator().getCurrencyServerSoap();
+			
+			return montant * (double) currencySystem.rate("", "EUR", currency, false, "", CurncsrvReturnRate.curncsrvReturnRateNumber, "", "");
+	}
 }

@@ -20,6 +20,16 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="storeProducts">
+    <complexType/>
+   </element>
+   <element name="storeProductsResponse">
+    <complexType>
+     <sequence>
+      <element name="storeProductsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="buyFromClient">
     <complexType>
      <sequence>
@@ -32,26 +42,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="buyFromClientReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="notifyAllObservators">
-    <complexType>
-     <sequence>
-      <element name="product" type="tns1:Product"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="notifyAllObservatorsResponse">
-    <complexType/>
-   </element>
-   <element name="storeProducts">
-    <complexType/>
-   </element>
-   <element name="storeProductsResponse">
-    <complexType>
-     <sequence>
-      <element name="storeProductsReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -101,11 +91,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="notifyAllObservators">
+    <complexType>
+     <sequence>
+      <element name="product" type="tns1:Product"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="notifyAllObservatorsResponse">
+    <complexType/>
+   </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://common" xmlns="http://www.w3.org/2001/XMLSchema">
    <complexType name="Product">
     <sequence>
      <element name="comment" nillable="true" type="xsd:string"/>
+     <element name="currency" nillable="true" type="xsd:string"/>
      <element name="info" nillable="true" type="xsd:string"/>
      <element name="name" nillable="true" type="xsd:string"/>
      <element name="price" nillable="true" type="xsd:double"/>
@@ -162,17 +163,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="notifyAllObservatorsRequest">
+   <wsdl:message name="clientProductsRequest">
 
-      <wsdl:part element="impl:notifyAllObservators" name="parameters">
+      <wsdl:part element="impl:clientProducts" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="clientProductsRequest">
+   <wsdl:message name="notifyAllObservatorsRequest">
 
-      <wsdl:part element="impl:clientProducts" name="parameters">
+      <wsdl:part element="impl:notifyAllObservators" name="parameters">
 
       </wsdl:part>
 
@@ -264,30 +265,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="buyFromClient">
-
-         <wsdl:input message="impl:buyFromClientRequest" name="buyFromClientRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:buyFromClientResponse" name="buyFromClientResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="notifyAllObservators">
-
-         <wsdl:input message="impl:notifyAllObservatorsRequest" name="notifyAllObservatorsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:notifyAllObservatorsResponse" name="notifyAllObservatorsResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="storeProducts">
 
          <wsdl:input message="impl:storeProductsRequest" name="storeProductsRequest">
@@ -295,6 +272,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:storeProductsResponse" name="storeProductsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buyFromClient">
+
+         <wsdl:input message="impl:buyFromClientRequest" name="buyFromClientRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buyFromClientResponse" name="buyFromClientResponse">
 
        </wsdl:output>
 
@@ -348,6 +337,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="notifyAllObservators">
+
+         <wsdl:input message="impl:notifyAllObservatorsRequest" name="notifyAllObservatorsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:notifyAllObservatorsResponse" name="notifyAllObservatorsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="ShopSoapBinding" type="impl:Shop">
@@ -372,42 +373,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="buyFromClient">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="buyFromClientRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="buyFromClientResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="notifyAllObservators">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="notifyAllObservatorsRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="notifyAllObservatorsResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="storeProducts">
 
          <wsdlsoap:operation soapAction=""/>
@@ -419,6 +384,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="storeProductsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buyFromClient">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buyFromClientRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buyFromClientResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -491,6 +474,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="registerClientResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="notifyAllObservators">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="notifyAllObservatorsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="notifyAllObservatorsResponse">
 
             <wsdlsoap:body use="literal"/>
 

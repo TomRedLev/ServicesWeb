@@ -5,16 +5,18 @@ public class Product {
 	private String type;
 	private String seller;
 	private Double price;
+	private String currency;
 	private String comment;
 	
 	
 	public Product() {}
 	
-	public Product(String name, String type, String seller, Double price, String comment) {
+	public Product(String name, String type, String seller, Double price, String currency, String comment) {
 		super();
 		this.name = name;
 		this.type = type;
 		this.seller = seller;
+		this.currency = currency;
 		this.price = price;
 		this.comment = comment;
 	}
@@ -22,7 +24,11 @@ public class Product {
 	public String getName() {
 		return name;
 	}
-
+	
+	public String getCurrency() {
+		return currency;
+	}
+	
 	public String getType() {
 		return type;
 	}
@@ -59,11 +65,16 @@ public class Product {
 		this.comment = comment;
 	}
 	
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+	
 	public String getInfo() {
 		return "Product { name : " + name 
 		+ ", type : " + type
 		+ ", seller : " + seller
 		+ ", price : " + price
+		+ ", currency : " + currency
 		+ ", comment : " + comment + "}";
 	}
 }

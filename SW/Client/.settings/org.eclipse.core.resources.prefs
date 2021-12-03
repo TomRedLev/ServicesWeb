@@ -1,6 +1,14 @@
 eclipse.preferences.version=1
 encoding//src/common/Observator.java=UTF-8
 encoding//src/common/Product.java=UTF-8
+encoding//src/compte/Compte.java=UTF-8
+encoding//src/compte/CompteService.java=UTF-8
+encoding//src/compte/CompteServiceLocator.java=UTF-8
+encoding//src/compte/CompteSoapBindingStub.java=UTF-8
+encoding//src/eurToMoney/EurToMoney.java=UTF-8
+encoding//src/eurToMoney/EurToMoneyService.java=UTF-8
+encoding//src/eurToMoney/EurToMoneyServiceLocator.java=UTF-8
+encoding//src/eurToMoney/EurToMoneySoapBindingStub.java=UTF-8
 encoding//src/server/Shop.java=UTF-8
 encoding//src/server/ShopService.java=UTF-8
 encoding//src/server/ShopServiceLocator.java=UTF-8

@@ -1,25 +1,27 @@
 package compte;
 
 public class Compte {
-	private int solde;
+	private double solde;
+	private String currency;
 
 	public Compte() {
 	}
 	
-	public Compte(int solde) {
+	public Compte(double solde, String currency) {
 		this.solde = solde;
+		this.currency = currency;
 	}
 	
-	 public void depotDe(int montant) {
+	 public void depotDe(double montant) {
 		 if (montant < 0) {
-			 //faire quelque chose de mieux log ?
+			 //TODO faire quelque chose de mieux log ?
 	         System.err.println("montant < 0");
 	     }
 	     else
 	    	 solde += montant;
 	}
 	
-	public boolean retraitDe(int montant) {
+	public boolean retraitDe(double montant) {
 		if (solde >= montant) {
 			solde -= montant;
 			return true;
@@ -27,8 +29,15 @@ public class Compte {
 		return false;
 	}
 	
-	public int valeurDuSolde() {
+	public double valeurDuSolde() {
 		return solde;
 	}
 	
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+	
+	public String currencyType() {
+		return currency;
+	}
 }

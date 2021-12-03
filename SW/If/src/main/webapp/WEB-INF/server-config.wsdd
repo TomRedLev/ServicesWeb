@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -27,27 +27,27 @@
    <ns2:parameter qname="ns1:token" type="xsd:int"/>
    <ns2:parameter qname="ns1:product_name" type="xsd:string"/>
   </ns2:operation>
-  <ns1:operation name="buyFromClient" qname="ns2:buyFromClient" returnQName="ns2:buyFromClientReturn" returnType="xsd:int" soapAction="" xmlns:ns2="http://server" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns2:token" type="xsd:int"/>
-   <ns1:parameter qname="ns2:product" type="ns3:Product" xmlns:ns3="http://common"/>
+  <ns1:operation name="storeProducts" qname="ns2:storeProducts" returnQName="ns2:storeProductsReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://server" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="buyFromClient" qname="ns3:buyFromClient" returnQName="ns3:buyFromClientReturn" returnType="xsd:int" soapAction="" xmlns:ns3="http://server" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:token" type="xsd:int"/>
+   <ns1:parameter qname="ns3:product" type="ns4:Product" xmlns:ns4="http://common"/>
   </ns1:operation>
-  <ns1:operation name="notifyAllObservators" qname="ns4:notifyAllObservators" soapAction="" xmlns:ns4="http://server">
-   <ns1:parameter qname="ns4:product" type="ns5:Product" xmlns:ns5="http://common"/>
+  <ns1:operation name="addObservator" qname="ns5:addObservator" soapAction="" xmlns:ns5="http://server">
+   <ns1:parameter qname="ns5:token" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:observator" type="ns6:Observator" xmlns:ns6="http://common"/>
   </ns1:operation>
-  <ns1:operation name="storeProducts" qname="ns6:storeProducts" returnQName="ns6:storeProductsReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://server" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  <ns1:operation name="addObservator" qname="ns7:addObservator" soapAction="" xmlns:ns7="http://server">
-   <ns1:parameter qname="ns7:token" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns7:observator" type="ns8:Observator" xmlns:ns8="http://common"/>
+  <ns1:operation name="clientProducts" qname="ns7:clientProducts" returnQName="ns7:clientProductsReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://server" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:token" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="clientProducts" qname="ns9:clientProducts" returnQName="ns9:clientProductsReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://server" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns9:token" type="xsd:int"/>
+  <ns1:operation name="removeAllObservators" qname="ns8:removeAllObservators" soapAction="" xmlns:ns8="http://server"/>
+  <ns1:operation name="registerClient" qname="ns9:registerClient" returnQName="ns9:registerClientReturn" returnType="xsd:int" soapAction="" xmlns:ns9="http://server" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:name" type="xsd:string"/>
+   <ns1:parameter qname="ns9:observator" type="ns10:Observator" xmlns:ns10="http://common"/>
   </ns1:operation>
-  <ns1:operation name="removeAllObservators" qname="ns10:removeAllObservators" soapAction="" xmlns:ns10="http://server"/>
-  <ns1:operation name="registerClient" qname="ns11:registerClient" returnQName="ns11:registerClientReturn" returnType="xsd:int" soapAction="" xmlns:ns11="http://server" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns11:name" type="xsd:string"/>
-   <ns1:parameter qname="ns11:observator" type="ns12:Observator" xmlns:ns12="http://common"/>
+  <ns1:operation name="notifyAllObservators" qname="ns11:notifyAllObservators" soapAction="" xmlns:ns11="http://server">
+   <ns1:parameter qname="ns11:product" type="ns12:Product" xmlns:ns12="http://common"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="clientProducts sellToClient buyFromClient storeProducts notifyAllObservators addObservator removeAllObservators registerClient"/>
+  <ns1:parameter name="allowedMethods" value="clientProducts sellToClient buyFromClient storeProducts addObservator notifyAllObservators removeAllObservators registerClient"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Shop"/>
   <ns1:parameter name="className" value="server.Shop"/>
@@ -56,6 +56,7 @@
   <ns1:parameter name="wsdlTargetNamespace" value="http://server"/>
   <ns1:parameter name="wsdlServiceElement" value="ShopService"/>
   <ns1:parameter name="scope" value="application"/>
+  
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:common.Product" xmlns:ns13="http://common"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns14:Observator" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:common.Observator" xmlns:ns14="http://common"/>
  </ns1:service>

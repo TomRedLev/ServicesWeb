@@ -10,6 +10,7 @@ package common;
 public class Product  implements java.io.Serializable {
     private java.lang.String comment;
 
+    private java.lang.String currency;
 
     private java.lang.String name;
 
@@ -22,10 +23,12 @@ public class Product  implements java.io.Serializable {
     public Product() {
     }
 
-	public Product(String name, String type, String seller, Double price, String comment)  {
+	public Product(String name, String type, String seller, Double price, String currency, String comment) {
+		super();
 		this.name = name;
 		this.type = type;
 		this.seller = seller;
+		this.currency = currency;
 		this.price = price;
 		this.comment = comment;
 	}
@@ -48,6 +51,31 @@ public class Product  implements java.io.Serializable {
     public void setComment(java.lang.String comment) {
         this.comment = comment;
     }
+
+
+    /**
+     * Gets the currency value for this Product.
+     * 
+     * @return currency
+     */
+    public java.lang.String getCurrency() {
+        return currency;
+    }
+
+
+    /**
+     * Sets the currency value for this Product.
+     * 
+     * @param currency
+     */
+    public void setCurrency(java.lang.String currency) {
+        this.currency = currency;
+    }
+
+
+
+
+
 
     /**
      * Gets the name value for this Product.
@@ -143,6 +171,10 @@ public class Product  implements java.io.Serializable {
             ((this.comment==null && other.getComment()==null) || 
              (this.comment!=null &&
               this.comment.equals(other.getComment()))) &&
+            ((this.currency==null && other.getCurrency()==null) || 
+             (this.currency!=null &&
+              this.currency.equals(other.getCurrency()))) &&
+           
             ((this.name==null && other.getName()==null) || 
              (this.name!=null &&
               this.name.equals(other.getName()))) &&
@@ -168,6 +200,12 @@ public class Product  implements java.io.Serializable {
         int _hashCode = 1;
         if (getComment() != null) {
             _hashCode += getComment().hashCode();
+        }
+        if (getCurrency() != null) {
+            _hashCode += getCurrency().hashCode();
+        }
+        if (getInfo() != null) {
+            _hashCode += getInfo().hashCode();
         }
         if (getName() != null) {
             _hashCode += getName().hashCode();
@@ -197,6 +235,13 @@ public class Product  implements java.io.Serializable {
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("currency");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://common", "currency"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setNillable(true);
+        typeDesc.addFieldDesc(elemField);
+       
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("name");
         elemField.setXmlName(new javax.xml.namespace.QName("http://common", "name"));
@@ -253,5 +298,14 @@ public class Product  implements java.io.Serializable {
           new  org.apache.axis.encoding.ser.BeanDeserializer(
             _javaType, _xmlType, typeDesc);
     }
+    
+	public String getInfo() {
+		return "Product { name : " + name 
+		+ ", type : " + type
+		+ ", seller : " + seller
+		+ ", price : " + price
+		+ ", currency : " + currency
+		+ ", comment : " + comment + "}";
+	}
 
 }

@@ -50,22 +50,16 @@ public class ShopProxy implements server.Shop {
     return shop.sellToClient(token, product_name);
   }
   
-  public int buyFromClient(int token, common.Product product) throws java.rmi.RemoteException{
-    if (shop == null)
-      _initShopProxy();
-    return shop.buyFromClient(token, product);
-  }
-  
-  public void notifyAllObservators(common.Product product) throws java.rmi.RemoteException{
-    if (shop == null)
-      _initShopProxy();
-    shop.notifyAllObservators(product);
-  }
-  
   public java.lang.String storeProducts() throws java.rmi.RemoteException{
     if (shop == null)
       _initShopProxy();
     return shop.storeProducts();
+  }
+  
+  public int buyFromClient(int token, common.Product product) throws java.rmi.RemoteException{
+    if (shop == null)
+      _initShopProxy();
+    return shop.buyFromClient(token, product);
   }
   
   public void addObservator(int token, common.Observator observator) throws java.rmi.RemoteException{
@@ -90,6 +84,12 @@ public class ShopProxy implements server.Shop {
     if (shop == null)
       _initShopProxy();
     return shop.registerClient(name, observator);
+  }
+  
+  public void notifyAllObservators(common.Product product) throws java.rmi.RemoteException{
+    if (shop == null)
+      _initShopProxy();
+    shop.notifyAllObservators(product);
   }
   
   

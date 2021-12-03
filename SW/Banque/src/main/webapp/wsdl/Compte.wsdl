@@ -4,10 +4,20 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://compte" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="setCurrency">
+    <complexType>
+     <sequence>
+      <element name="currency" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setCurrencyResponse">
+    <complexType/>
+   </element>
    <element name="depotDe">
     <complexType>
      <sequence>
-      <element name="montant" type="xsd:int"/>
+      <element name="montant" type="xsd:double"/>
      </sequence>
     </complexType>
    </element>
@@ -17,7 +27,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="retraitDe">
     <complexType>
      <sequence>
-      <element name="montant" type="xsd:int"/>
+      <element name="montant" type="xsd:double"/>
      </sequence>
     </complexType>
    </element>
@@ -34,7 +44,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="valeurDuSoldeResponse">
     <complexType>
      <sequence>
-      <element name="valeurDuSoldeReturn" type="xsd:int"/>
+      <element name="valeurDuSoldeReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="currencyType">
+    <complexType/>
+   </element>
+   <element name="currencyTypeResponse">
+    <complexType>
+     <sequence>
+      <element name="currencyTypeReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -57,6 +77,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="setCurrencyResponse">
+
+      <wsdl:part element="impl:setCurrencyResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="retraitDeRequest">
 
       <wsdl:part element="impl:retraitDe" name="parameters">
@@ -73,9 +101,33 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="currencyTypeRequest">
+
+      <wsdl:part element="impl:currencyType" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="depotDeRequest">
 
       <wsdl:part element="impl:depotDe" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="currencyTypeResponse">
+
+      <wsdl:part element="impl:currencyTypeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setCurrencyRequest">
+
+      <wsdl:part element="impl:setCurrency" name="parameters">
 
       </wsdl:part>
 
@@ -90,6 +142,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </wsdl:message>
 
    <wsdl:portType name="Compte">
+
+      <wsdl:operation name="setCurrency">
+
+         <wsdl:input message="impl:setCurrencyRequest" name="setCurrencyRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setCurrencyResponse" name="setCurrencyResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="depotDe">
 
@@ -127,11 +191,41 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="currencyType">
+
+         <wsdl:input message="impl:currencyTypeRequest" name="currencyTypeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:currencyTypeResponse" name="currencyTypeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="CompteSoapBinding" type="impl:Compte">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="setCurrency">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setCurrencyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setCurrencyResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="depotDe">
 
@@ -180,6 +274,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="valeurDuSoldeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="currencyType">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="currencyTypeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="currencyTypeResponse">
 
             <wsdlsoap:body use="literal"/>
 

@@ -20,15 +20,20 @@
       <parameter name="className" value="compte.CompteSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="Compte"/>
       <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="setCurrency" qname="operNS:setCurrency" xmlns:operNS="http://compte" soapAction="" >
+        <parameter qname="pns:currency" xmlns:pns="http://compte" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
       <operation name="depotDe" qname="operNS:depotDe" xmlns:operNS="http://compte" soapAction="" >
-        <parameter qname="pns:montant" xmlns:pns="http://compte" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:montant" xmlns:pns="http://compte" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
       <operation name="retraitDe" qname="operNS:retraitDe" xmlns:operNS="http://compte" returnQName="retNS:retraitDeReturn" xmlns:retNS="http://compte" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:montant" xmlns:pns="http://compte" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:montant" xmlns:pns="http://compte" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <operation name="valeurDuSolde" qname="operNS:valeurDuSolde" xmlns:operNS="http://compte" returnQName="retNS:valeurDuSoldeReturn" xmlns:retNS="http://compte" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      <operation name="valeurDuSolde" qname="operNS:valeurDuSolde" xmlns:operNS="http://compte" returnQName="retNS:valeurDuSoldeReturn" xmlns:retNS="http://compte" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
       </operation>
-      <parameter name="allowedMethods" value="depotDe valeurDuSolde retraitDe"/>
+      <operation name="currencyType" qname="operNS:currencyType" xmlns:operNS="http://compte" returnQName="retNS:currencyTypeReturn" xmlns:retNS="http://compte" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="currencyType depotDe valeurDuSolde setCurrency retraitDe"/>
 
   </service>
 </deployment>

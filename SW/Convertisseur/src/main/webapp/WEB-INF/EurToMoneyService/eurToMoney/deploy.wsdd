@@ -10,16 +10,20 @@
       <parameter name="className" value="eurToMoney.EurToMoney"/>
       <parameter name="wsdlPortType" value="EurToMoney"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation xmlns:operNS="http://eurToMoney" xmlns:retNS="http://eurToMoney" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="convertToUsd" qname="operNS:convertToUsd" returnQName="retNS:convertToUsdReturn" returnType="rtns:double" soapAction="">
+      <operation xmlns:operNS="http://eurToMoney" xmlns:retNS="http://eurToMoney" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="convertToJpy" qname="operNS:convertToJpy" returnQName="retNS:convertToJpyReturn" returnType="rtns:double" soapAction="">
         <parameter xmlns:pns="http://eurToMoney" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:montant" type="tns:double"/>
       </operation>
       <operation xmlns:operNS="http://eurToMoney" xmlns:retNS="http://eurToMoney" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="convertToGpb" qname="operNS:convertToGpb" returnQName="retNS:convertToGpbReturn" returnType="rtns:double" soapAction="">
         <parameter xmlns:pns="http://eurToMoney" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:montant" type="tns:double"/>
       </operation>
-      <operation xmlns:operNS="http://eurToMoney" xmlns:retNS="http://eurToMoney" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="convertToJpy" qname="operNS:convertToJpy" returnQName="retNS:convertToJpyReturn" returnType="rtns:double" soapAction="">
+      <operation xmlns:operNS="http://eurToMoney" xmlns:retNS="http://eurToMoney" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="convertToEur" qname="operNS:convertToEur" returnQName="retNS:convertToEurReturn" returnType="rtns:double" soapAction="">
+        <parameter xmlns:pns="http://eurToMoney" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:montant" type="tns:double"/>
+        <parameter xmlns:pns="http://eurToMoney" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:currency" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://eurToMoney" xmlns:retNS="http://eurToMoney" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="convertToUsd" qname="operNS:convertToUsd" returnQName="retNS:convertToUsdReturn" returnType="rtns:double" soapAction="">
         <parameter xmlns:pns="http://eurToMoney" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:montant" type="tns:double"/>
       </operation>
-      <parameter name="allowedMethods" value="convertToUsd convertToGpb convertToJpy"/>
+      <parameter name="allowedMethods" value="convertToUsd convertToGpb convertToEur convertToJpy"/>
 
   </service>
 </deployment>

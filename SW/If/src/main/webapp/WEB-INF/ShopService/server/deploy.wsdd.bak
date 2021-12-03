@@ -24,14 +24,11 @@
         <parameter qname="pns:token" xmlns:pns="http://server" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:product_name" xmlns:pns="http://server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
+      <operation name="storeProducts" qname="operNS:storeProducts" xmlns:operNS="http://server" returnQName="retNS:storeProductsReturn" xmlns:retNS="http://server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
       <operation name="buyFromClient" qname="operNS:buyFromClient" xmlns:operNS="http://server" returnQName="retNS:buyFromClientReturn" xmlns:retNS="http://server" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:token" xmlns:pns="http://server" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:product" xmlns:pns="http://server" type="tns:Product" xmlns:tns="http://common"/>
-      </operation>
-      <operation name="notifyAllObservators" qname="operNS:notifyAllObservators" xmlns:operNS="http://server" soapAction="" >
-        <parameter qname="pns:product" xmlns:pns="http://server" type="tns:Product" xmlns:tns="http://common"/>
-      </operation>
-      <operation name="storeProducts" qname="operNS:storeProducts" xmlns:operNS="http://server" returnQName="retNS:storeProductsReturn" xmlns:retNS="http://server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
       </operation>
       <operation name="addObservator" qname="operNS:addObservator" xmlns:operNS="http://server" soapAction="" >
         <parameter qname="pns:token" xmlns:pns="http://server" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
@@ -46,7 +43,10 @@
         <parameter qname="pns:name" xmlns:pns="http://server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:observator" xmlns:pns="http://server" type="tns:Observator" xmlns:tns="http://common"/>
       </operation>
-      <parameter name="allowedMethods" value="clientProducts sellToClient buyFromClient storeProducts notifyAllObservators addObservator removeAllObservators registerClient"/>
+      <operation name="notifyAllObservators" qname="operNS:notifyAllObservators" xmlns:operNS="http://server" soapAction="" >
+        <parameter qname="pns:product" xmlns:pns="http://server" type="tns:Product" xmlns:tns="http://common"/>
+      </operation>
+      <parameter name="allowedMethods" value="clientProducts sellToClient buyFromClient storeProducts addObservator notifyAllObservators removeAllObservators registerClient"/>
 
       <typeMapping
         xmlns:ns="http://common"

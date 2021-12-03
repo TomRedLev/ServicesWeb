@@ -8,17 +8,39 @@
 package common;
 
 public class Observator  implements java.io.Serializable {
+    private java.lang.String info;
+
     private java.lang.String product;
 
     public Observator() {
     }
 
     public Observator(
+           java.lang.String info,
            java.lang.String product) {
+           this.info = info;
            this.product = product;
     }
 
 
+    /**
+     * Gets the info value for this Observator.
+     * 
+     * @return info
+     */
+    public java.lang.String getInfo() {
+        return info;
+    }
+
+
+    /**
+     * Sets the info value for this Observator.
+     * 
+     * @param info
+     */
+    public void setInfo(java.lang.String info) {
+        this.info = info;
+    }
 
 
     /**
@@ -52,6 +74,9 @@ public class Observator  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
+            ((this.info==null && other.getInfo()==null) || 
+             (this.info!=null &&
+              this.info.equals(other.getInfo()))) &&
             ((this.product==null && other.getProduct()==null) || 
              (this.product!=null &&
               this.product.equals(other.getProduct())));
@@ -66,7 +91,9 @@ public class Observator  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-
+        if (getInfo() != null) {
+            _hashCode += getInfo().hashCode();
+        }
         if (getProduct() != null) {
             _hashCode += getProduct().hashCode();
         }
@@ -81,6 +108,12 @@ public class Observator  implements java.io.Serializable {
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://common", "Observator"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("info");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://common", "info"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setNillable(true);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("product");
         elemField.setXmlName(new javax.xml.namespace.QName("http://common", "product"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));

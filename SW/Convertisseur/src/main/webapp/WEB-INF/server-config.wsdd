@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -33,16 +33,20 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="EurToMoney" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="convertToUsd" qname="ns1:convertToUsd" returnQName="ns1:convertToUsdReturn" returnType="xsd:double" soapAction="" xmlns:ns1="http://eurToMoney" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+  <ns2:operation name="convertToJpy" qname="ns1:convertToJpy" returnQName="ns1:convertToJpyReturn" returnType="xsd:double" soapAction="" xmlns:ns1="http://eurToMoney" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
    <ns2:parameter qname="ns1:montant" type="xsd:double"/>
   </ns2:operation>
   <ns1:operation name="convertToGpb" qname="ns2:convertToGpb" returnQName="ns2:convertToGpbReturn" returnType="xsd:double" soapAction="" xmlns:ns2="http://eurToMoney" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns2:montant" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="convertToJpy" qname="ns3:convertToJpy" returnQName="ns3:convertToJpyReturn" returnType="xsd:double" soapAction="" xmlns:ns3="http://eurToMoney" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="convertToEur" qname="ns3:convertToEur" returnQName="ns3:convertToEurReturn" returnType="xsd:double" soapAction="" xmlns:ns3="http://eurToMoney" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns3:montant" type="xsd:double"/>
+   <ns1:parameter qname="ns3:currency" type="xsd:string"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="convertToUsd convertToGpb convertToJpy"/>
+  <ns1:operation name="convertToUsd" qname="ns4:convertToUsd" returnQName="ns4:convertToUsdReturn" returnType="xsd:double" soapAction="" xmlns:ns4="http://eurToMoney" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:montant" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="convertToUsd convertToGpb convertToEur convertToJpy"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="EurToMoney"/>
   <ns1:parameter name="className" value="eurToMoney.EurToMoney"/>

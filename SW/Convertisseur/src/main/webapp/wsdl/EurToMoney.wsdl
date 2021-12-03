@@ -4,17 +4,17 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://eurToMoney" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="convertToUsd">
+   <element name="convertToJpy">
     <complexType>
      <sequence>
       <element name="montant" type="xsd:double"/>
      </sequence>
     </complexType>
    </element>
-   <element name="convertToUsdResponse">
+   <element name="convertToJpyResponse">
     <complexType>
      <sequence>
-      <element name="convertToUsdReturn" type="xsd:double"/>
+      <element name="convertToJpyReturn" type="xsd:double"/>
      </sequence>
     </complexType>
    </element>
@@ -32,22 +32,45 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="convertToJpy">
+   <element name="convertToEur">
+    <complexType>
+     <sequence>
+      <element name="montant" type="xsd:double"/>
+      <element name="currency" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="convertToEurResponse">
+    <complexType>
+     <sequence>
+      <element name="convertToEurReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="convertToUsd">
     <complexType>
      <sequence>
       <element name="montant" type="xsd:double"/>
      </sequence>
     </complexType>
    </element>
-   <element name="convertToJpyResponse">
+   <element name="convertToUsdResponse">
     <complexType>
      <sequence>
-      <element name="convertToJpyReturn" type="xsd:double"/>
+      <element name="convertToUsdReturn" type="xsd:double"/>
      </sequence>
     </complexType>
    </element>
   </schema>
  </wsdl:types>
+
+   <wsdl:message name="convertToEurResponse">
+
+      <wsdl:part element="impl:convertToEurResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
 
    <wsdl:message name="convertToUsdRequest">
 
@@ -65,17 +88,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="convertToUsdResponse">
+   <wsdl:message name="convertToJpyResponse">
 
-      <wsdl:part element="impl:convertToUsdResponse" name="parameters">
+      <wsdl:part element="impl:convertToJpyResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="convertToJpyResponse">
+   <wsdl:message name="convertToUsdResponse">
 
-      <wsdl:part element="impl:convertToJpyResponse" name="parameters">
+      <wsdl:part element="impl:convertToUsdResponse" name="parameters">
 
       </wsdl:part>
 
@@ -97,15 +120,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="convertToEurRequest">
+
+      <wsdl:part element="impl:convertToEur" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:portType name="EurToMoney">
 
-      <wsdl:operation name="convertToUsd">
+      <wsdl:operation name="convertToJpy">
 
-         <wsdl:input message="impl:convertToUsdRequest" name="convertToUsdRequest">
+         <wsdl:input message="impl:convertToJpyRequest" name="convertToJpyRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:convertToUsdResponse" name="convertToUsdResponse">
+         <wsdl:output message="impl:convertToJpyResponse" name="convertToJpyResponse">
 
        </wsdl:output>
 
@@ -123,13 +154,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="convertToJpy">
+      <wsdl:operation name="convertToEur">
 
-         <wsdl:input message="impl:convertToJpyRequest" name="convertToJpyRequest">
+         <wsdl:input message="impl:convertToEurRequest" name="convertToEurRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:convertToJpyResponse" name="convertToJpyResponse">
+         <wsdl:output message="impl:convertToEurResponse" name="convertToEurResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="convertToUsd">
+
+         <wsdl:input message="impl:convertToUsdRequest" name="convertToUsdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:convertToUsdResponse" name="convertToUsdResponse">
 
        </wsdl:output>
 
@@ -141,17 +184,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="convertToUsd">
+      <wsdl:operation name="convertToJpy">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="convertToUsdRequest">
+         <wsdl:input name="convertToJpyRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="convertToUsdResponse">
+         <wsdl:output name="convertToJpyResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -177,17 +220,35 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="convertToJpy">
+      <wsdl:operation name="convertToEur">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="convertToJpyRequest">
+         <wsdl:input name="convertToEurRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="convertToJpyResponse">
+         <wsdl:output name="convertToEurResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="convertToUsd">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="convertToUsdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="convertToUsdResponse">
 
             <wsdlsoap:body use="literal"/>
 

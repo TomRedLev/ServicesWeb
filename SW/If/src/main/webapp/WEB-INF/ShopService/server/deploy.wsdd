@@ -14,14 +14,11 @@
         <parameter xmlns:pns="http://server" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:token" type="tns:int"/>
         <parameter xmlns:pns="http://server" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:product_name" type="tns:string"/>
       </operation>
+      <operation xmlns:operNS="http://server" xmlns:retNS="http://server" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="storeProducts" qname="operNS:storeProducts" returnQName="retNS:storeProductsReturn" returnType="rtns:string" soapAction="">
+      </operation>
       <operation xmlns:operNS="http://server" xmlns:retNS="http://server" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="buyFromClient" qname="operNS:buyFromClient" returnQName="retNS:buyFromClientReturn" returnType="rtns:int" soapAction="">
         <parameter xmlns:pns="http://server" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:token" type="tns:int"/>
         <parameter xmlns:pns="http://server" xmlns:tns="http://common" qname="pns:product" type="tns:Product"/>
-      </operation>
-      <operation xmlns:operNS="http://server" name="notifyAllObservators" qname="operNS:notifyAllObservators" soapAction="">
-        <parameter xmlns:pns="http://server" xmlns:tns="http://common" qname="pns:product" type="tns:Product"/>
-      </operation>
-      <operation xmlns:operNS="http://server" xmlns:retNS="http://server" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="storeProducts" qname="operNS:storeProducts" returnQName="retNS:storeProductsReturn" returnType="rtns:string" soapAction="">
       </operation>
       <operation xmlns:operNS="http://server" name="addObservator" qname="operNS:addObservator" soapAction="">
         <parameter xmlns:pns="http://server" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:token" type="tns:int"/>
@@ -36,7 +33,10 @@
         <parameter xmlns:pns="http://server" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:name" type="tns:string"/>
         <parameter xmlns:pns="http://server" xmlns:tns="http://common" qname="pns:observator" type="tns:Observator"/>
       </operation>
-      <parameter name="allowedMethods" value="clientProducts sellToClient buyFromClient storeProducts notifyAllObservators addObservator removeAllObservators registerClient"/>
+      <operation xmlns:operNS="http://server" name="notifyAllObservators" qname="operNS:notifyAllObservators" soapAction="">
+        <parameter xmlns:pns="http://server" xmlns:tns="http://common" qname="pns:product" type="tns:Product"/>
+      </operation>
+      <parameter name="allowedMethods" value="clientProducts sellToClient buyFromClient storeProducts addObservator notifyAllObservators removeAllObservators registerClient"/>
 
       <typeMapping xmlns:ns="http://common" qname="ns:Product" type="java:common.Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
       <typeMapping xmlns:ns="http://common" qname="ns:Observator" type="java:common.Observator" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
