@@ -10,11 +10,13 @@ public class Compte {
 		this.solde = solde;
 	}
 	
-	public void depotDe(int montant) {
-		if (montant < 0) {
-			//faire quelque chose
-		}
-		solde += montant;
+	 public void depotDe(int montant) {
+		 if (montant < 0) {
+			 //faire quelque chose de mieux log ?
+	         System.err.println("montant < 0");
+	     }
+	     else
+	    	 solde += montant;
 	}
 	
 	public boolean retraitDe(int montant) {

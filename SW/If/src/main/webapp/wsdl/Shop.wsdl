@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server" xmlns:intf="http://server" xmlns:tns1="http://common" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://common"/>
+   <element name="sellToClient">
+    <complexType>
+     <sequence>
+      <element name="token" type="xsd:int"/>
+      <element name="product_name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sellToClientResponse">
+    <complexType>
+     <sequence>
+      <element name="sellToClientReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buyFromClient">
+    <complexType>
+     <sequence>
+      <element name="token" type="xsd:int"/>
+      <element name="product" type="tns1:Product"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buyFromClientResponse">
+    <complexType>
+     <sequence>
+      <element name="buyFromClientReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="notifyAllObservators">
+    <complexType>
+     <sequence>
+      <element name="product" type="tns1:Product"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="notifyAllObservatorsResponse">
+    <complexType/>
+   </element>
+   <element name="storeProducts">
+    <complexType/>
+   </element>
+   <element name="storeProductsResponse">
+    <complexType>
+     <sequence>
+      <element name="storeProductsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addObservator">
+    <complexType>
+     <sequence>
+      <element name="token" type="xsd:int"/>
+      <element name="observator" type="tns1:Observator"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addObservatorResponse">
+    <complexType/>
+   </element>
+   <element name="clientProducts">
+    <complexType>
+     <sequence>
+      <element name="token" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="clientProductsResponse">
+    <complexType>
+     <sequence>
+      <element name="clientProductsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeAllObservators">
+    <complexType/>
+   </element>
+   <element name="removeAllObservatorsResponse">
+    <complexType/>
+   </element>
+   <element name="registerClient">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+      <element name="observator" type="tns1:Observator"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registerClientResponse">
+    <complexType>
+     <sequence>
+      <element name="registerClientReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://common" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Product">
+    <sequence>
+     <element name="comment" nillable="true" type="xsd:string"/>
+     <element name="info" nillable="true" type="xsd:string"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="price" nillable="true" type="xsd:double"/>
+     <element name="seller" nillable="true" type="xsd:string"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Observator">
+    <sequence>
+     <element name="info" nillable="true" type="xsd:string"/>
+     <element name="product" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="buyFromClientRequest">
+
+      <wsdl:part element="impl:buyFromClient" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="storeProductsRequest">
+
+      <wsdl:part element="impl:storeProducts" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="clientProductsResponse">
+
+      <wsdl:part element="impl:clientProductsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="storeProductsResponse">
+
+      <wsdl:part element="impl:storeProductsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="notifyAllObservatorsResponse">
+
+      <wsdl:part element="impl:notifyAllObservatorsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="notifyAllObservatorsRequest">
+
+      <wsdl:part element="impl:notifyAllObservators" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="clientProductsRequest">
+
+      <wsdl:part element="impl:clientProducts" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addObservatorRequest">
+
+      <wsdl:part element="impl:addObservator" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addObservatorResponse">
+
+      <wsdl:part element="impl:addObservatorResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registerClientResponse">
+
+      <wsdl:part element="impl:registerClientResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sellToClientRequest">
+
+      <wsdl:part element="impl:sellToClient" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllObservatorsResponse">
+
+      <wsdl:part element="impl:removeAllObservatorsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllObservatorsRequest">
+
+      <wsdl:part element="impl:removeAllObservators" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sellToClientResponse">
+
+      <wsdl:part element="impl:sellToClientResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buyFromClientResponse">
+
+      <wsdl:part element="impl:buyFromClientResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registerClientRequest">
+
+      <wsdl:part element="impl:registerClient" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Shop">
+
+      <wsdl:operation name="sellToClient">
+
+         <wsdl:input message="impl:sellToClientRequest" name="sellToClientRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sellToClientResponse" name="sellToClientResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buyFromClient">
+
+         <wsdl:input message="impl:buyFromClientRequest" name="buyFromClientRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buyFromClientResponse" name="buyFromClientResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="notifyAllObservators">
+
+         <wsdl:input message="impl:notifyAllObservatorsRequest" name="notifyAllObservatorsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:notifyAllObservatorsResponse" name="notifyAllObservatorsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="storeProducts">
+
+         <wsdl:input message="impl:storeProductsRequest" name="storeProductsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:storeProductsResponse" name="storeProductsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addObservator">
+
+         <wsdl:input message="impl:addObservatorRequest" name="addObservatorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addObservatorResponse" name="addObservatorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="clientProducts">
+
+         <wsdl:input message="impl:clientProductsRequest" name="clientProductsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:clientProductsResponse" name="clientProductsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllObservators">
+
+         <wsdl:input message="impl:removeAllObservatorsRequest" name="removeAllObservatorsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:removeAllObservatorsResponse" name="removeAllObservatorsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registerClient">
+
+         <wsdl:input message="impl:registerClientRequest" name="registerClientRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registerClientResponse" name="registerClientResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ShopSoapBinding" type="impl:Shop">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="sellToClient">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sellToClientRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sellToClientResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buyFromClient">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buyFromClientRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buyFromClientResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="notifyAllObservators">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="notifyAllObservatorsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="notifyAllObservatorsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="storeProducts">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="storeProductsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="storeProductsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addObservator">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addObservatorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addObservatorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="clientProducts">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="clientProductsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="clientProductsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllObservators">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAllObservatorsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAllObservatorsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registerClient">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registerClientRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registerClientResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ShopService">
+
+      <wsdl:port binding="impl:ShopSoapBinding" name="Shop">
+
+         <wsdlsoap:address location="http://localhost:8080/IfService/services/Shop"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -19,7 +19,7 @@ public class Observator extends UnicastRemoteObject implements IObservator {
 
     @Override
     public int update(IProduct product) throws RemoteException {
-    	for (var elem : products) {
+    	for (String elem : products) {
     		if (elem.equals(product.getName())) {
         		System.out.println("The following product is available : " + product.getInfo());
         		synchronized (lock) {
@@ -34,7 +34,7 @@ public class Observator extends UnicastRemoteObject implements IObservator {
     
     @Override
 	public void setProduct(String product) throws RemoteException {
-		for (var elem : products) {
+		for (String elem : products) {
 			if (elem.equals(product)) {
 				return ;
 			}

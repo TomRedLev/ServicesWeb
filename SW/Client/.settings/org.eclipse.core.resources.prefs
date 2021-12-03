@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//src/common/Observator.java=UTF-8
+encoding//src/common/Product.java=UTF-8
+encoding//src/server/Shop.java=UTF-8
+encoding//src/server/ShopService.java=UTF-8
+encoding//src/server/ShopServiceLocator.java=UTF-8
+encoding//src/server/ShopSoapBindingStub.java=UTF-8

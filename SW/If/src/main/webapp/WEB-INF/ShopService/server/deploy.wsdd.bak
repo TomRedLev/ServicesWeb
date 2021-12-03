@@ -1,0 +1,68 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ShopService WSDL service -->
+
+  <service name="Shop" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server"/>
+      <parameter name="wsdlServiceElement" value="ShopService"/>
+      <parameter name="schemaQualified" value="http://common,http://server"/>
+      <parameter name="wsdlServicePort" value="Shop"/>
+      <parameter name="className" value="server.ShopSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Shop"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="sellToClient" qname="operNS:sellToClient" xmlns:operNS="http://server" returnQName="retNS:sellToClientReturn" xmlns:retNS="http://server" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:token" xmlns:pns="http://server" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:product_name" xmlns:pns="http://server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="buyFromClient" qname="operNS:buyFromClient" xmlns:operNS="http://server" returnQName="retNS:buyFromClientReturn" xmlns:retNS="http://server" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:token" xmlns:pns="http://server" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:product" xmlns:pns="http://server" type="tns:Product" xmlns:tns="http://common"/>
+      </operation>
+      <operation name="notifyAllObservators" qname="operNS:notifyAllObservators" xmlns:operNS="http://server" soapAction="" >
+        <parameter qname="pns:product" xmlns:pns="http://server" type="tns:Product" xmlns:tns="http://common"/>
+      </operation>
+      <operation name="storeProducts" qname="operNS:storeProducts" xmlns:operNS="http://server" returnQName="retNS:storeProductsReturn" xmlns:retNS="http://server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="addObservator" qname="operNS:addObservator" xmlns:operNS="http://server" soapAction="" >
+        <parameter qname="pns:token" xmlns:pns="http://server" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:observator" xmlns:pns="http://server" type="tns:Observator" xmlns:tns="http://common"/>
+      </operation>
+      <operation name="clientProducts" qname="operNS:clientProducts" xmlns:operNS="http://server" returnQName="retNS:clientProductsReturn" xmlns:retNS="http://server" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:token" xmlns:pns="http://server" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="removeAllObservators" qname="operNS:removeAllObservators" xmlns:operNS="http://server" soapAction="" >
+      </operation>
+      <operation name="registerClient" qname="operNS:registerClient" xmlns:operNS="http://server" returnQName="retNS:registerClientReturn" xmlns:retNS="http://server" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://server" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:observator" xmlns:pns="http://server" type="tns:Observator" xmlns:tns="http://common"/>
+      </operation>
+      <parameter name="allowedMethods" value="clientProducts sellToClient buyFromClient storeProducts notifyAllObservators addObservator removeAllObservators registerClient"/>
+
+      <typeMapping
+        xmlns:ns="http://common"
+        qname="ns:Product"
+        type="java:common.Product"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://common"
+        qname="ns:Observator"
+        type="java:common.Observator"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

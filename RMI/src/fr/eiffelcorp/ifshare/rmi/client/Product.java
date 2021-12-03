@@ -43,7 +43,7 @@ public class Product extends UnicastRemoteObject implements IProduct {
 	}
 	
 	@Override
-	public String getSeller() {
+	public String getSeller() throws RemoteException {
 		return seller;
 	}
 

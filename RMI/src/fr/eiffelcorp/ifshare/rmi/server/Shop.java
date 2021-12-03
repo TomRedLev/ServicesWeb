@@ -41,7 +41,7 @@ public class Shop extends UnicastRemoteObject implements IShop {
 	}
 	
 	private IProduct searchForProduct(Integer token, String product_name) throws RemoteException {
-		for (var product : products.get(token)) {
+		for (IProduct product : products.get(token)) {
 			if (product.getName().equals(product_name)) {
 				return product;
 			}
@@ -78,9 +78,9 @@ public class Shop extends UnicastRemoteObject implements IShop {
 	
 	@Override
 	public String storeProducts() throws RemoteException {
-		var sj = new StringJoiner(", ");
-		for (var productsList : products.values()) {
-			for (var prod : productsList) {
+		StringJoiner sj = new StringJoiner(", ");
+		for (List<IProduct> productsList : products.values()) {
+			for (IProduct prod : productsList) {
 				sj.add(prod.getInfo());
 			}
 		}
@@ -89,8 +89,8 @@ public class Shop extends UnicastRemoteObject implements IShop {
 	
 	@Override
 	public String clientProducts(Integer token) throws RemoteException {
-		var sj = new StringJoiner(", ");
-		for (var prod : products.get(token)) {
+		StringJoiner sj = new StringJoiner(", ");
+		for (IProduct prod : products.get(token)) {
 			sj.add(prod.getInfo());
 		}
 		return sj.toString();
@@ -105,7 +105,7 @@ public class Shop extends UnicastRemoteObject implements IShop {
 
     @Override
     public void notifyAllObservators(IProduct product) throws RemoteException {
-        for (var observator : order_observators) {
+        for (IObservator observator : order_observators) {
         	synchronized (lock) {
         		 if (observator.update(product) == 0) {
         			 for (Entry<Integer, IObservator> entry : observators.entrySet()) {

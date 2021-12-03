@@ -10,13 +10,13 @@
       <parameter name="className" value="compte.Compte"/>
       <parameter name="wsdlPortType" value="Compte"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation xmlns:operNS="http://compte" xmlns:retNS="http://compte" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="valeurDuSolde" qname="operNS:valeurDuSolde" returnQName="retNS:valeurDuSoldeReturn" returnType="rtns:int" soapAction="">
-      </operation>
       <operation xmlns:operNS="http://compte" name="depotDe" qname="operNS:depotDe" soapAction="">
         <parameter xmlns:pns="http://compte" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:montant" type="tns:int"/>
       </operation>
       <operation xmlns:operNS="http://compte" xmlns:retNS="http://compte" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="retraitDe" qname="operNS:retraitDe" returnQName="retNS:retraitDeReturn" returnType="rtns:boolean" soapAction="">
         <parameter xmlns:pns="http://compte" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:montant" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://compte" xmlns:retNS="http://compte" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="valeurDuSolde" qname="operNS:valeurDuSolde" returnQName="retNS:valeurDuSoldeReturn" returnType="rtns:int" soapAction="">
       </operation>
       <parameter name="allowedMethods" value="depotDe valeurDuSolde retraitDe"/>
 

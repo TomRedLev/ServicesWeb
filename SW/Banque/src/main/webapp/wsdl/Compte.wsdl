@@ -4,16 +4,6 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://compte" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="valeurDuSolde">
-    <complexType/>
-   </element>
-   <element name="valeurDuSoldeResponse">
-    <complexType>
-     <sequence>
-      <element name="valeurDuSoldeReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="depotDe">
     <complexType>
      <sequence>
@@ -38,16 +28,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="valeurDuSolde">
+    <complexType/>
+   </element>
+   <element name="valeurDuSoldeResponse">
+    <complexType>
+     <sequence>
+      <element name="valeurDuSoldeReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
  </wsdl:types>
-
-   <wsdl:message name="valeurDuSoldeRequest">
-
-      <wsdl:part element="impl:valeurDuSolde" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
 
    <wsdl:message name="retraitDeResponse">
 
@@ -57,9 +49,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="valeurDuSoldeResponse">
+   <wsdl:message name="valeurDuSoldeRequest">
 
-      <wsdl:part element="impl:valeurDuSoldeResponse" name="parameters">
+      <wsdl:part element="impl:valeurDuSolde" name="parameters">
 
       </wsdl:part>
 
@@ -68,6 +60,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="retraitDeRequest">
 
       <wsdl:part element="impl:retraitDe" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="valeurDuSoldeResponse">
+
+      <wsdl:part element="impl:valeurDuSoldeResponse" name="parameters">
 
       </wsdl:part>
 
@@ -90,18 +90,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </wsdl:message>
 
    <wsdl:portType name="Compte">
-
-      <wsdl:operation name="valeurDuSolde">
-
-         <wsdl:input message="impl:valeurDuSoldeRequest" name="valeurDuSoldeRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:valeurDuSoldeResponse" name="valeurDuSoldeResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="depotDe">
 
@@ -127,29 +115,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="valeurDuSolde">
+
+         <wsdl:input message="impl:valeurDuSoldeRequest" name="valeurDuSoldeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:valeurDuSoldeResponse" name="valeurDuSoldeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="CompteSoapBinding" type="impl:Compte">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-
-      <wsdl:operation name="valeurDuSolde">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="valeurDuSoldeRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="valeurDuSoldeResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="depotDe">
 
@@ -180,6 +162,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="retraitDeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="valeurDuSolde">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="valeurDuSoldeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="valeurDuSoldeResponse">
 
             <wsdlsoap:body use="literal"/>
 
