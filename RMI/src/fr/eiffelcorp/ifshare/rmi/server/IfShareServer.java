@@ -24,6 +24,7 @@ import fr.eiffelcorp.ifshare.rmi.common.IShop;
 // Ajouts nécessaires : 
 	// Ajouter l'observator/observer.
 	
+// java fr.eiffelcorp.ifshare.rmi.server.IfShareServer
 
 public class IfShareServer {
 	public static void main(String[] args) {

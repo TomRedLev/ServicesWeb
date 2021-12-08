@@ -15,6 +15,8 @@ import fr.eiffelcorp.ifshare.rmi.common.IShop;
 // Principe établi ici : Le client possède les produits et les observateurs et le shop n'est qu'une plateforme de transfert.
 
 
+// java fr.eiffelcorp.ifshare.rmi.client.IfShareClient
+
 @SuppressWarnings("deprecation")
 public class IfShareClient {
 	public static void main(String[] args)  {
