@@ -41,10 +41,14 @@ public class Shop extends UnicastRemoteObject implements IShop {
 	}
 	
 	private IProduct searchForProduct(Integer token, String product_name) throws RemoteException {
-		for (IProduct product : products.get(token)) {
-			if (product.getName().equals(product_name)) {
-				return product;
+		for (List<IProduct> products_list : products.values()) {
+			for (IProduct product : products_list) {
+				if (product.getName().equals(product_name)) {
+					products_list.remove(product);
+					return product;
+				}
 			}
+			
 		}
 		return null;
 	}
@@ -55,7 +59,6 @@ public class Shop extends UnicastRemoteObject implements IShop {
 		if (product != null) {
 			synchronized (lock) {
 				observators.get(token).setProduct("");
-				products.get(token).remove(product);
 				order_observators.remove(observators.get(token));
 			}
 			return 0;
